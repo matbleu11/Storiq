@@ -7,8 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app">
-    <!-- Vue de la caméra -->
+  <!-- Écran d'introduction avec le logo -->
+  <div id="intro-screen">
+    <img src="logo.png" alt="Logo" id="logo">
+    <h2>Extension of Instagram by Mathieu.r</h2>
+  </div>
+
+  <!-- Application principale après l'introduction -->
+  <div id="app" class="hidden">
     <video id="camera-preview" autoplay playsinline></video>
     
     <!-- Boutons de contrôle -->

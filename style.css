@@ -1,20 +1,45 @@
 /* Global */
 body {
     margin: 0;
-    overflow: hidden;
     font-family: Arial, sans-serif;
     background-color: black;
     color: white;
   }
   
-  /* Application */
+  /* Écran d'introduction */
+  #intro-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    z-index: 2;
+  }
+  
+  #logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  #intro-screen h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Application principale */
   #app {
     position: relative;
     width: 100vw;
     height: 100vh;
   }
   
-  /* Caméra */
   #camera-preview {
     position: absolute;
     top: 0;
@@ -38,7 +63,6 @@ body {
     z-index: 2;
   }
   
-  /* Bouton rond */
   .round-btn {
     width: 50px;
     height: 50px;
@@ -50,7 +74,6 @@ body {
     cursor: pointer;
   }
   
-  /* Bouton de capture */
   .capture-btn {
     width: 70px;
     height: 70px;
@@ -88,5 +111,54 @@ body {
   
   .filter-option:hover {
     background: rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Écran d'édition */
+  #editor-screen {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+  }
+  
+  #editor-canvas {
+    width: 100%;
+    height: 70%;
+    background-color: white;
+    display: block;
+  }
+  
+  #text-overlay {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    width: 80%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  #editor-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  #editor-controls button {
+    flex: 1;
+    margin: 0 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
   }
   
