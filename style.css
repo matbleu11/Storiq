@@ -1,92 +1,49 @@
-/* Global */
-body {
-    margin: 0;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    background-color: black;
-    color: white;
-  }
-  
-  /* Application */
-  #app {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-  }
-  
-  /* Caméra */
-  #camera-preview {
+/* Écran d'édition */
+#editor-screen {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    filter: var(--camera-filter, none);
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
   }
   
-  /* Boutons de contrôle */
-  #controls {
-    position: absolute;
-    bottom: 20px;
+  #editor-canvas {
     width: 100%;
+    height: 70%;
+    background-color: white;
+    display: block;
+  }
+  
+  #text-overlay {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    width: 80%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  #editor-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    z-index: 2;
-  }
-  
-  /* Bouton rond */
-  .round-btn {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.3);
-    border: none;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    color: white;
-    cursor: pointer;
-  }
-  
-  /* Bouton de capture */
-  .capture-btn {
-    width: 70px;
-    height: 70px;
-    background: white;
-    border: 4px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  /* Menu des filtres */
-  #filter-menu {
-    position: absolute;
-    bottom: 100px;
-    left: 20px;
-    background: rgba(0, 0, 0, 0.8);
     padding: 10px;
-    border-radius: 10px;
-    z-index: 3;
   }
   
-  #filter-menu.hidden {
-    display: none;
-  }
-  
-  .filter-option {
-    display: block;
-    margin: 5px 0;
+  #editor-controls button {
+    flex: 1;
+    margin: 0 5px;
     background: rgba(255, 255, 255, 0.2);
     border: none;
-    color: white;
     padding: 10px;
+    color: white;
     border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .filter-option:hover {
-    background: rgba(255, 255, 255, 0.4);
+    font-size: 1rem;
   }
   

@@ -25,6 +25,17 @@
       <button class="filter-option" onclick="applyFilter('invert(1)')">Inverser</button>
     </div>
   </div>
+
+  <!-- Écran d'édition -->
+  <div id="editor-screen" class="hidden">
+    <canvas id="editor-canvas"></canvas>
+    <textarea id="text-overlay" placeholder="Ajoutez du texte..."></textarea>
+    <div id="editor-controls">
+      <button id="add-music-btn">🎵 Ajouter Musique</button>
+      <button id="share-btn">Partager sur Instagram</button>
+    </div>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>
