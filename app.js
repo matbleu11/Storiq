@@ -64,6 +64,14 @@ function openEditor(dataUrl) {
     context.drawImage(image, 0, 0);
   };
   image.src = dataUrl;
+
+  // Rester sur l'écran d'édition pendant 2 secondes
+  setTimeout(() => {
+    // Réinitialiser la caméra et revenir à l'écran principal
+    editorScreen.classList.add("hidden");
+    app.classList.remove("hidden");
+    startCamera();
+  }, 2000); // 2000 ms = 2 secondes
 }
 
 // Ajouter de la musique (rediriger vers Instagram)
