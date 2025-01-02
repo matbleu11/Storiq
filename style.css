@@ -13,6 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
   
   /* Contrôles en haut */
@@ -36,14 +37,15 @@ body {
     cursor: pointer;
   }
   
-  /* Contrôles de capture */
-  #controls {
+  /* Conteneur pour le bouton de capture central */
+  #capture-btn-container {
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
   }
   
+  /* Bouton de capture */
   .capture-btn {
     background: url('capture-icon.png') no-repeat center center;
     background-size: cover;

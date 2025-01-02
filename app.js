@@ -15,8 +15,11 @@ let capturedData = null;
 // Fonction pour activer la caméra
 async function startCamera() {
   try {
-    mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
-    video.srcObject = mediaStream;
+    // Demander l'accès à la caméra uniquement si ce n'est pas déjà fait
+    if (!mediaStream) {
+      mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = mediaStream;
+    }
   } catch (error) {
     alert("Erreur lors de l'accès à la caméra.");
     console.error(error);
