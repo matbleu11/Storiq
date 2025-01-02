@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Storiq - Création de Stories</title>
+  <title>Storiq - Stories simplifiées</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <div id="app">
-    <header>
-      <h1>Storiq</h1>
-    </header>
-    <main>
-      <div id="story-preview">
-        <canvas id="story-canvas"></canvas>
-      </div>
-      <div id="controls">
-        <input type="file" id="file-input" accept="image/*">
-        <button id="camera-btn">📸 Prendre une Photo</button>
-        <button id="share-btn">Partager en Story</button>
-      </div>
-    </main>
+    <!-- Vue de la caméra -->
+    <video id="camera-preview" autoplay playsinline></video>
+    
+    <!-- Boutons de contrôle -->
+    <div id="controls">
+      <button id="filter-btn" class="round-btn">🎨</button>
+      <button id="capture-btn" class="capture-btn"></button>
+    </div>
+
+    <!-- Menu des filtres -->
+    <div id="filter-menu" class="hidden">
+      <button class="filter-option" onclick="applyFilter('none')">Aucun</button>
+      <button class="filter-option" onclick="applyFilter('grayscale(1)')">Gris</button>
+      <button class="filter-option" onclick="applyFilter('sepia(1)')">Sépia</button>
+      <button class="filter-option" onclick="applyFilter('invert(1)')">Inverser</button>
+    </div>
   </div>
   <script src="app.js"></script>
 </body>

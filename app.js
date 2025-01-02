@@ -1,62 +1,65 @@
-const fileInput = document.getElementById("file-input");
-const cameraBtn = document.getElementById("camera-btn");
-const shareBtn = document.getElementById("share-btn");
-const canvas = document.getElementById("story-canvas");
-const ctx = canvas.getContext("2d");
+const video = document.getElementById("camera-preview");
+const captureBtn = document.getElementById("capture-btn");
+const filterBtn = document.getElementById("filter-btn");
+const filterMenu = document.getElementById("filter-menu");
 
-canvas.width = 1080; // Dimensions pour les stories Instagram
-canvas.height = 1920;
+let mediaStream = null;
+let isRecording = false;
+let recordTimeout = null;
 
-let selectedImage = null;
-
-// Charger une image sélectionnée
-fileInput.addEventListener("change", (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const img = new Image();
-      img.onload = () => {
-        selectedImage = img;
-        drawImageOnCanvas();
-      };
-      img.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-// Prendre une photo avec la caméra
-cameraBtn.addEventListener("click", async () => {
-  const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-  const video = document.createElement("video");
-  video.srcObject = stream;
-  video.autoplay = true;
-
-  // Capture une image après quelques secondes
-  setTimeout(() => {
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    video.srcObject.getTracks().forEach((track) => track.stop());
-    selectedImage = canvas.toDataURL("image/png");
-  }, 2000);
-});
-
-// Partager l'image sur Instagram
-shareBtn.addEventListener("click", () => {
-  if (!selectedImage) {
-    alert("Veuillez sélectionner ou capturer une image !");
-    return;
-  }
-
-  // Rediriger vers Instagram
-  const instagramStoryURL = "instagram://story-camera";
-  window.location.href = instagramStoryURL;
-});
-
-// Dessiner l'image sur le canvas
-function drawImageOnCanvas() {
-  if (selectedImage) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(selectedImage, 0, 0, canvas.width, canvas.height);
+// Fonction pour activer la caméra
+async function startCamera() {
+  try {
+    mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+    video.srcObject = mediaStream;
+  } catch (error) {
+    alert("Erreur lors de l'accès à la caméra.");
+    console.error(error);
   }
 }
+
+// Appliquer un filtre
+function applyFilter(filter) {
+  video.style.setProperty("--camera-filter", filter);
+  filterMenu.classList.add("hidden");
+}
+
+// Bouton "Capture" (Photo ou Vidéo)
+captureBtn.addEventListener("mousedown", () => {
+  isRecording = false;
+  recordTimeout = setTimeout(() => {
+    isRecording = true;
+    console.log("Enregistrement vidéo (simulation)");
+    // Logique pour enregistrer une vidéo peut être ajoutée ici
+  }, 1000);
+});
+
+captureBtn.addEventListener("mouseup", () => {
+  clearTimeout(recordTimeout);
+  if (isRecording) {
+    console.log("Fin de l'enregistrement vidéo (simulation)");
+  } else {
+    console.log("Capture d'une photo");
+    capturePhoto();
+  }
+});
+
+// Fonction pour capturer une photo
+function capturePhoto() {
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  const dataUrl = canvas.toDataURL("image/png");
+  console.log("Photo capturée :", dataUrl);
+  alert("Photo capturée !");
+}
+
+// Bouton pour afficher/masquer le menu des filtres
+filterBtn.addEventListener("click", () => {
+  filterMenu.classList.toggle("hidden");
+});
+
+// Démarrer la caméra au chargement
+startCamera();

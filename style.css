@@ -1,74 +1,92 @@
-/* Style global inspiré d'Instagram */
+/* Global */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle, #833ab4, #fd1d1d, #fcb045);
-    color: white;
-    text-align: center;
     overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
   }
   
+  /* Application */
   #app {
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    width: 100vw;
     height: 100vh;
   }
   
-  header {
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    font-size: 1.5rem;
+  /* Caméra */
+  #camera-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: var(--camera-filter, none);
   }
   
-  main {
-    flex: 1;
+  /* Boutons de contrôle */
+  #controls {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
+    z-index: 2;
   }
   
-  #story-preview {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  #story-canvas {
-    width: 90%;
-    max-height: 70%;
-    border-radius: 15px;
-  }
-  
-  #controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-  }
-  
-  #file-input, #camera-btn, #share-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
+  /* Bouton rond */
+  .round-btn {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.3);
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 1rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: white;
     cursor: pointer;
   }
   
-  #file-input {
+  /* Bouton de capture */
+  .capture-btn {
+    width: 70px;
+    height: 70px;
+    background: white;
+    border: 4px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  /* Menu des filtres */
+  #filter-menu {
+    position: absolute;
+    bottom: 100px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 3;
+  }
+  
+  #filter-menu.hidden {
     display: none;
   }
   
-  label[for="file-input"] {
+  .filter-option {
+    display: block;
+    margin: 5px 0;
     background: rgba(255, 255, 255, 0.2);
+    border: none;
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    padding: 10px;
+    border-radius: 5px;
     cursor: pointer;
+  }
+  
+  .filter-option:hover {
+    background: rgba(255, 255, 255, 0.4);
   }
   
