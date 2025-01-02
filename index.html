@@ -15,8 +15,12 @@
   </header>
   <main>
     <section id="upload">
-      <h2>Importer vos fichiers</h2>
-      <input type="file" id="file-input" accept="image/*,video/*" multiple>
+      <h2>Importer ou Prendre une photo</h2>
+      <div id="upload-buttons">
+        <input type="file" id="file-input" accept="image/*,video/*" multiple>
+        <button id="camera-btn">Prendre une photo</button>
+      </div>
+      <p>Prévisualisez vos fichiers ci-dessous :</p>
       <div id="preview"></div>
     </section>
     <section id="editor">
@@ -25,9 +29,9 @@
       <button onclick="applyFilter('sepia')">Sépia</button>
       <button onclick="applyFilter('invert')">Inverser</button>
     </section>
-    <section id="download">
-      <h2>Télécharger ou Partager</h2>
-      <button id="download-btn">Télécharger</button>
+    <section id="share">
+      <h2>Partager votre création</h2>
+      <button id="share-btn">Partager sur Instagram</button>
     </section>
   </main>
   <script src="app.js"></script>

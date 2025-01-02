@@ -21,6 +21,17 @@ fileInput.addEventListener("change", () => {
   });
 });
 
+// Prendre une photo avec la caméra
+const cameraBtn = document.getElementById("camera-btn");
+cameraBtn.addEventListener("click", async () => {
+  const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  const video = document.createElement("video");
+  video.srcObject = stream;
+  video.autoplay = true;
+  preview.innerHTML = "";
+  preview.appendChild(video);
+});
+
 // Application de filtres basiques
 function applyFilter(filter) {
   const imgs = preview.querySelectorAll("img, video");
@@ -29,8 +40,9 @@ function applyFilter(filter) {
   });
 }
 
-// Télécharger le résultat (en version simplifiée)
-const downloadBtn = document.getElementById("download-btn");
-downloadBtn.addEventListener("click", () => {
-  alert("Téléchargement ou partage à venir !");
+// Partager sur Instagram
+const shareBtn = document.getElementById("share-btn");
+shareBtn.addEventListener("click", () => {
+  const instagramStoryURL = "instagram://story-camera";
+  window.location.href = instagramStoryURL;
 });
