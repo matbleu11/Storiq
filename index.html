@@ -3,37 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Storiq - Éditeur Avancé</title>
+  <title>Storiq - Création de Stories</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Storiq Logo" id="app-logo">
-    <h1>Storiq</h1>
-    <p>Éditeur avancé pour vos Stories</p>
-  </header>
-  <main>
-    <section id="upload">
-      <h2>Importer ou Prendre une photo</h2>
-      <div id="upload-buttons">
-        <input type="file" id="file-input" accept="image/*,video/*" multiple>
-        <button id="camera-btn">Prendre une photo</button>
+  <div id="app">
+    <header>
+      <h1>Storiq</h1>
+    </header>
+    <main>
+      <div id="story-preview">
+        <canvas id="story-canvas"></canvas>
       </div>
-      <p>Prévisualisez vos fichiers ci-dessous :</p>
-      <div id="preview"></div>
-    </section>
-    <section id="editor">
-      <h2>Outils d'édition</h2>
-      <button onclick="applyFilter('grayscale')">Gris</button>
-      <button onclick="applyFilter('sepia')">Sépia</button>
-      <button onclick="applyFilter('invert')">Inverser</button>
-    </section>
-    <section id="share">
-      <h2>Partager votre création</h2>
-      <button id="share-btn">Partager sur Instagram</button>
-    </section>
-  </main>
+      <div id="controls">
+        <input type="file" id="file-input" accept="image/*">
+        <button id="camera-btn">📸 Prendre une Photo</button>
+        <button id="share-btn">Partager en Story</button>
+      </div>
+    </main>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
