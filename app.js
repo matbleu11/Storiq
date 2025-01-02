@@ -7,21 +7,32 @@ const editorCanvas = document.getElementById("editor-canvas");
 const textOverlay = document.getElementById("text-overlay");
 const addMusicBtn = document.getElementById("add-music-btn");
 const shareBtn = document.getElementById("share-btn");
+const introScreen = document.getElementById("intro-screen");
+const app = document.getElementById("app");
 
 let mediaStream = null;
-let isRecording = false;
-let recordTimeout = null;
 let capturedData = null;
+let cameraInitialized = false;  // Ajouter un contrôle pour éviter de demander la caméra à chaque lancement
 
 // Fonction pour activer la caméra
 async function startCamera() {
-  try {
-    mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
-    video.srcObject = mediaStream;
-  } catch (error) {
-    alert("Erreur lors de l'accès à la caméra.");
-    console.error(error);
+  if (!cameraInitialized) {  // Si la caméra n'a pas encore été initialisée
+    try {
+      mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = mediaStream;
+      cameraInitialized = true;  // Marquer la caméra comme initialisée
+    } catch (error) {
+      alert("Erreur lors de l'accès à la caméra.");
+      console.error(error);
+    }
   }
+}
+
+// Afficher l'écran principal après l'introduction
+function showApp() {
+  introScreen.classList.add("hidden");  // Masquer l'écran d'introduction avec le logo
+  app.classList.remove("hidden");  // Afficher la caméra
+  startCamera();
 }
 
 // Appliquer un filtre
@@ -30,7 +41,7 @@ function applyFilter(filter) {
   filterMenu.classList.add("hidden");
 }
 
-// Bouton "Capture" (Photo)
+// Capture d'une photo
 captureBtn.addEventListener("click", () => {
   capturePhoto();
 });
@@ -46,7 +57,7 @@ function capturePhoto() {
   openEditor(capturedData);
 }
 
-// Afficher l'écran d'édition
+// Afficher l'écran d'édition avec la photo capturée
 function openEditor(dataUrl) {
   editorScreen.classList.remove("hidden");
   const context = editorCanvas.getContext("2d");
@@ -57,9 +68,17 @@ function openEditor(dataUrl) {
     context.drawImage(image, 0, 0);
   };
   image.src = dataUrl;
+
+  // Rester sur l'écran d'édition pendant 2 secondes
+  setTimeout(() => {
+    // Réinitialiser la caméra et revenir à l'écran principal
+    editorScreen.classList.add("hidden");
+    app.classList.remove("hidden");
+    startCamera();
+  }, 2000); // 2000 ms = 2 secondes
 }
 
-// Ajouter de la musique (redirection vers Instagram)
+// Ajouter de la musique (rediriger vers Instagram)
 addMusicBtn.addEventListener("click", () => {
   window.location.href = "instagram://story-camera";
 });
@@ -73,9 +92,8 @@ shareBtn.addEventListener("click", () => {
     context.fillText(textOverlay.value.trim(), 20, editorCanvas.height - 50);
   }
   const finalDataUrl = editorCanvas.toDataURL("image/png");
-  console.log("Prêt à être partagé :", finalDataUrl);
   alert("Votre contenu est prêt à être partagé !");
 });
 
-// Démarrer la caméra au chargement
-startCamera();
+// Démarrer l'écran d'introduction
+setTimeout(showApp, 3000);  // Affiche l'écran principal après 3 secondes
