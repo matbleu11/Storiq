@@ -9,8 +9,6 @@ const addMusicBtn = document.getElementById("add-music-btn");
 const shareBtn = document.getElementById("share-btn");
 
 let mediaStream = null;
-let isRecording = false;
-let recordTimeout = null;
 let capturedData = null;
 
 // Fonction pour activer la caméra

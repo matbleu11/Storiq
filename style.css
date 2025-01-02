@@ -1,5 +1,68 @@
-/* Écran d'édition */
-#editor-screen {
+/* Style de la page principale */
+#app {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+  }
+  
+  /* Contrôles caméra */
+  #controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+  }
+  
+  #capture-btn {
+    background: url('capture-icon.png') no-repeat center center;
+    background-size: cover;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #filter-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 30px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Menu des filtres */
+  #filter-menu {
+    display: none;
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 10;
+  }
+  
+  .filter-option {
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    cursor: pointer;
+  }
+  
+  /* Écran d'édition */
+  #editor-screen {
     display: none;
     position: absolute;
     top: 0;
@@ -7,10 +70,14 @@
     width: 100vw;
     height: 100vh;
     background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
   
   #editor-canvas {
-    width: 100%;
+    width: 90%;
     height: 70%;
     background-color: white;
     display: block;
@@ -18,7 +85,7 @@
   
   #text-overlay {
     position: absolute;
-    bottom: 20%;
+    bottom: 10%;
     left: 10%;
     width: 80%;
     background: rgba(0, 0, 0, 0.5);
@@ -31,19 +98,19 @@
   
   #editor-controls {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    width: 100%;
     padding: 10px;
   }
   
   #editor-controls button {
-    flex: 1;
-    margin: 0 5px;
     background: rgba(255, 255, 255, 0.2);
     border: none;
     padding: 10px;
     color: white;
     border-radius: 5px;
     font-size: 1rem;
+    cursor: pointer;
   }
   
