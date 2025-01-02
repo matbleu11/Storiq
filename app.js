@@ -7,10 +7,10 @@ const editorCanvas = document.getElementById("editor-canvas");
 const textOverlay = document.getElementById("text-overlay");
 const addMusicBtn = document.getElementById("add-music-btn");
 const shareBtn = document.getElementById("share-btn");
-const introScreen = document.getElementById("intro-screen");
-const app = document.getElementById("app");
 
 let mediaStream = null;
+let isRecording = false;
+let recordTimeout = null;
 let capturedData = null;
 
 // Fonction pour activer la caméra
@@ -24,20 +24,13 @@ async function startCamera() {
   }
 }
 
-// Afficher l'écran principal après l'introduction
-function showApp() {
-  introScreen.classList.add("hidden");
-  app.classList.remove("hidden");
-  startCamera();
-}
-
 // Appliquer un filtre
 function applyFilter(filter) {
   video.style.filter = filter;
   filterMenu.classList.add("hidden");
 }
 
-// Capture d'une photo
+// Bouton "Capture" (Photo)
 captureBtn.addEventListener("click", () => {
   capturePhoto();
 });
@@ -53,7 +46,7 @@ function capturePhoto() {
   openEditor(capturedData);
 }
 
-// Afficher l'écran d'édition avec la photo capturée
+// Afficher l'écran d'édition
 function openEditor(dataUrl) {
   editorScreen.classList.remove("hidden");
   const context = editorCanvas.getContext("2d");
@@ -66,7 +59,7 @@ function openEditor(dataUrl) {
   image.src = dataUrl;
 }
 
-// Ajouter de la musique (rediriger vers Instagram)
+// Ajouter de la musique (redirection vers Instagram)
 addMusicBtn.addEventListener("click", () => {
   window.location.href = "instagram://story-camera";
 });
@@ -80,8 +73,9 @@ shareBtn.addEventListener("click", () => {
     context.fillText(textOverlay.value.trim(), 20, editorCanvas.height - 50);
   }
   const finalDataUrl = editorCanvas.toDataURL("image/png");
+  console.log("Prêt à être partagé :", finalDataUrl);
   alert("Votre contenu est prêt à être partagé !");
 });
 
-// Démarrer l'écran d'introduction
-setTimeout(showApp, 3000);  // Affiche l'écran principal après 3 secondes
+// Démarrer la caméra au chargement
+startCamera();
