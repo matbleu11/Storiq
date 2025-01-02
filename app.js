@@ -12,22 +12,26 @@ const app = document.getElementById("app");
 
 let mediaStream = null;
 let capturedData = null;
+let cameraInitialized = false;  // Ajouter un contrôle pour éviter de demander la caméra à chaque lancement
 
 // Fonction pour activer la caméra
 async function startCamera() {
-  try {
-    mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
-    video.srcObject = mediaStream;
-  } catch (error) {
-    alert("Erreur lors de l'accès à la caméra.");
-    console.error(error);
+  if (!cameraInitialized) {  // Si la caméra n'a pas encore été initialisée
+    try {
+      mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = mediaStream;
+      cameraInitialized = true;  // Marquer la caméra comme initialisée
+    } catch (error) {
+      alert("Erreur lors de l'accès à la caméra.");
+      console.error(error);
+    }
   }
 }
 
 // Afficher l'écran principal après l'introduction
 function showApp() {
-  introScreen.classList.add("hidden");
-  app.classList.remove("hidden");
+  introScreen.classList.add("hidden");  // Masquer l'écran d'introduction avec le logo
+  app.classList.remove("hidden");  // Afficher la caméra
   startCamera();
 }
 
