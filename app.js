@@ -7,6 +7,7 @@ const editorCanvas = document.getElementById("editor-canvas");
 const textOverlay = document.getElementById("text-overlay");
 const addMusicBtn = document.getElementById("add-music-btn");
 const shareBtn = document.getElementById("share-btn");
+const musicBtn = document.getElementById("music-btn");
 
 let mediaStream = null;
 let capturedData = null;
@@ -28,7 +29,7 @@ function applyFilter(filter) {
   filterMenu.classList.add("hidden");
 }
 
-// Bouton "Capture" (Photo)
+// Capture de la photo
 captureBtn.addEventListener("click", () => {
   capturePhoto();
 });
@@ -57,9 +58,10 @@ function openEditor(dataUrl) {
   image.src = dataUrl;
 }
 
-// Ajouter de la musique (redirection vers Instagram)
-addMusicBtn.addEventListener("click", () => {
-  window.location.href = "instagram://story-camera";
+// Ajouter de la musique (simule l'ouverture d'une bibliothèque)
+musicBtn.addEventListener("click", () => {
+  alert("La bibliothèque de musique Instagram s'ouvre (fonctionnalité non disponible pour le web).");
+  // Redirection vers Instagram, ou tu peux simuler l'ouverture d'une bibliothèque musicale si nécessaire.
 });
 
 // Partager sur Instagram
