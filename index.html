@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storiq - Éditeur Avancé</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Storiq Logo" id="app-logo">
+    <h1>Storiq</h1>
+    <p>Éditeur avancé pour vos Stories</p>
+  </header>
+  <main>
+    <section id="upload">
+      <h2>Importer vos fichiers</h2>
+      <input type="file" id="file-input" accept="image/*,video/*" multiple>
+      <div id="preview"></div>
+    </section>
+    <section id="editor">
+      <h2>Outils d'édition</h2>
+      <button onclick="applyFilter('grayscale')">Gris</button>
+      <button onclick="applyFilter('sepia')">Sépia</button>
+      <button onclick="applyFilter('invert')">Inverser</button>
+    </section>
+    <section id="download">
+      <h2>Télécharger ou Partager</h2>
+      <button id="download-btn">Télécharger</button>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

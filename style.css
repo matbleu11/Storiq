@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: #f4f4f4;
+}
+
+header {
+  background: #6200ea;
+  color: #fff;
+  padding: 1rem;
+}
+
+header img#app-logo {
+  width: 80px;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+}
+
+main {
+  padding: 1rem;
+}
+
+#upload, #editor, #download {
+  margin: 1rem 0;
+}
+
+#file-input {
+  padding: 0.5rem;
+}
+
+#preview img, #preview video {
+  width: 100%;
+  max-width: 300px;
+  margin: 0.5rem 0;
+}
